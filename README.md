@@ -1,6 +1,6 @@
 # Fullstack Express-React app written in TypeScript
 
-[![Build Status](https://travis-ci.com/Fabianopb/express-react-ts-ci.svg?branch=master)](https://travis-ci.com/Fabianopb/express-react-ts-ci)
+[![Build Status](https://travis-ci.com/nicu-chiciuc/full-ts-react.svg?branch=master)](https://travis-ci.com/nicu-chiciuc/full-ts-react)
 
 This is a starter kit for a fullstack application configured to use [Express](http://expressjs.com/) and [MongoDB](https://www.mongodb.com/) in the backend, and [React](https://reactjs.org/) in the frontend, all written in [TypeScript](https://www.typescriptlang.org/). The backend is built with [webpack](https://webpack.js.org/) (configuration inspired from [here](https://github.com/anthillsolutions/api-skel)), and the frontend was bootstraped with [create-react-app-typescript](https://github.com/wmonk/create-react-app-typescript).
 
@@ -9,22 +9,27 @@ This starter kit includes test configuration and a couple test examples using [J
 ## Running it locally
 
 Run your mongo instance locally, as for example:
+
 ```
 $ sudo mongod --dbpath /data/test/ --port 27017
 ```
+
 Notes: this is important to be done before installing the dependencies so the script to populate the database with sample data can connect to mongo.
 
 Create a `.env` file with the authentication secret in the root of the backend folder (check `backend/.env.example`).
+
 ```
 AUTH_SHARED_SECRET=my-auth-shared-secret-hash-here
 ```
 
 Install dependencies:
+
 ```
 $ yarn install
 ```
 
 Launch the application:
+
 ```
 $ yarn start
 ```
@@ -34,6 +39,7 @@ $ yarn start
 The backend is structured by routes. Initially we have `items` and `users`, and inside of each we have the respective `model`, `controller`, and `tests`.
 
 Say you want to create an endpoint to manage your favorite restaurants. you can then create the following structure under the `backend/server/restaurants` folder:
+
 ```
 backend/server/restaurants/
 │── restaurant.model.ts
@@ -46,11 +52,12 @@ The `model` is a [Mongoose](https://mongoosejs.com/) model, and it contains the 
 The `controller` consists of your endpoints, where you define what actions your user will be able to perform, like creating, reading, updating, and deleting entries. _Notice that if you use the `authorize` middleware preceding your endpoint's callback it will be a private route. In other words, the user will only be able to interact with that endpoint if he has a valid token (if he is authenticated)._
 
 Example of a private endpoint. If you remove `authorize` this will be a public endpoint.
+
 ```ts
-router.route("/").get(authorize, async (request, response) => {
-  const items = await Item.find();
-  return response.status(200).json(items);
-});
+router.route('/').get(authorize, async (request, response) => {
+  const items = await Item.find()
+  return response.status(200).json(items)
+})
 ```
 
 ## Testing the backend
@@ -68,6 +75,7 @@ You can see examples for all of that in `items.test.ts` and `users.test.ts`.
 Say goodbye to PropTypes, and welcome TypeScript!
 
 A class component receiving props and containing local state can be written like this:
+
 ```ts
 type MyComponentState = {
   isOpen: boolean;
@@ -98,6 +106,7 @@ class MyClassComponent extends React.Component<MyComponentProps, MyComponentStat
 ```
 
 In the other hand, a functional (presentational) component can be written like this:
+
 ```ts
 type MyComponentProps = {
   name: string;
