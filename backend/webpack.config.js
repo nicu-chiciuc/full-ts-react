@@ -3,10 +3,8 @@ const NodemonPlugin = require('nodemon-webpack-plugin')
 
 const nodeModules = {}
 fs.readdirSync('node_modules')
-  .filter(function(x) {
-    return ['.bin'].indexOf(x) === -1
-  })
-  .forEach(function(mod) {
+  .filter(x => ['.bin'].indexOf(x) === -1)
+  .forEach(mod => {
     nodeModules[mod] = 'commonjs ' + mod
   })
 

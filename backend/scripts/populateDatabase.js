@@ -1,6 +1,10 @@
+require('dotenv').config()
+
 const MongoClient = require('mongodb').MongoClient
 const crypto = require('crypto')
 const chalk = require('chalk')
+
+console.log('env', process.env.MONGODB_URI, process.env.AUTH_SHARED_SECRET)
 
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/test_database'
 const dbName = url.split('/')[url.split('/').length - 1]
